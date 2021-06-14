@@ -1,0 +1,8 @@
+<ng-multiselect-dropdown
+  [settings]="dropdownSettings"
+  [placeholder]="'Select City'"
+  [data]="dropdownList"
+  [(ngModel)]="selectedItems"
+  (onSelect)="onItemSelect($event)"
+  (onSelectAll)="onSelectAll($event)">
+</ng-multiselect-dropdown>

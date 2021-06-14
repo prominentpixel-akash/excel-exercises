@@ -1,0 +1,15 @@
+<div class="col-md-12">
+  <p>Array Task</p>
+
+  <input type="text" class="form-control" [(ngModel)]="inputText">
+
+  {{array | json}}
+
+  <button [disabled]="!inputText" class="btn btn-primary"
+          (click)="onSubmit()">Submit
+  </button>
+
+  <br><br>
+
+  <button [disabled]="!inputText" class="btn btn-primary" (click)="inputText = ''">Reset</button>
+</div>
