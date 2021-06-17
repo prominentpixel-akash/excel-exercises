@@ -1,0 +1,88 @@
+<p>Reactive Form with Validation</p>
+<div class="container">
+  <div class="row">
+    <form class="center" [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input placeholder="Name"
+               id="name"
+               type="text"
+               formControlName="name"/>
+        <div *ngIf="getForm.name.touched && getForm.name.invalid" class="invalid-feedback">
+          <div *ngIf="getForm.name.errors.required">Name is required</div>
+        </div>
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label for="name">Company</label>
+        <input placeholder="Company"
+               id="company" type="text" name="company"
+               formControlName="company"/>
+
+        <div *ngIf="getForm.company.touched && getForm.company.invalid" class="invalid-feedback">
+          <div *ngIf="getForm.company.errors.required">Company is required</div>
+        </div>
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label>Area</label>
+        <select name="area" id="area" formControlName="area">
+          <option value="" disabled>Select your Area</option>
+          <option value="rajkot">Rajkot</option>
+          <option value="amd">Ahmedabad</option>
+          <option value="baroda">Baroda</option>
+        </select>
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label>Gender</label>
+        <input name="male" type="checkbox" id="male"
+               formControlName="gender" value="male"/>
+        <label>Male</label>
+
+        <input name="female" type="checkbox" id="female"
+               formControlName="gender" value="female"/>
+        <label>Female</label>
+
+        <input name="other" type="checkbox" id="other"
+               formControlName="gender" value="other"/>
+        <label>Other</label>
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label>isNewToCompany</label>
+        <input formControlName="isNewToCompany" name="isNewToCompany" id="yes"
+               type="radio" value="yes"/>
+        <label>Yes</label>
+        <input formControlName="isNewToCompany" name="isNewToCompany" id="no"
+               type="radio" value="no"/>
+        <label>No</label>
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label>Mobile No</label>
+        <input placeholder="Mobile Number"
+               type="text"
+               id="mobile" name="mobile"
+               formControlName="mobile"/>
+
+        <div
+          *ngIf="(getForm.mobile.invalid ) || (getForm.mobile.invalid && (getForm.mobile.dirty || getForm.mobile.touched))"
+          class="invalid-feedback">
+          <div *ngIf="getForm.mobile.errors.required">This field is required.</div>
+          <div *ngIf="getForm.mobile.errors.pattern">Invalid phone number.</div>
+        </div>
+      </div>
+      <br>
+
+      <div>
+        <button class="btn btn-primary" type="submit">save</button>
+      </div>
+    </form>
+  </div>
+</div>

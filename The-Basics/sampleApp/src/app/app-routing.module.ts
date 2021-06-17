@@ -7,8 +7,18 @@ import {DirectivesComponent} from './directives/directives.component';
 import {UserComponent} from './user/user.component';
 import {AngularLifecycleComponent} from './angular-lifecycle/angular-lifecycle.component';
 import {LoginComponent} from './login/login.component';
+import {HeaderComponent} from './router/header/header.component';
+import {JobsComponent} from './router/jobs/jobs.component';
+import {JobPostComponent} from './router/job-post/job-post.component';
+import {JobListComponent} from './router/job-list/job-list.component';
+import {JobDetailsComponent} from './router/job-details/job-details.component';
+import {RouterLoginComponent} from './router/router-login/router-login.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {ReactiveFormComponent} from './reactive-form/reactive-form.component';
+import {TemplateFormComponent} from './template-form/template-form.component';
 
 const routes: Routes = [
+
   // The Basic
   {path: 'array', component: BlankArrayComponent},
   {path: 'dropdown', component: AngularDropdownComponent},
@@ -22,8 +32,27 @@ const routes: Routes = [
   {path: 'directives', component: DirectivesComponent},
 
   // Using Services & Dependency Injection
-  {path: 'service', component: LoginComponent}
+  {path: 'service', component: LoginComponent},
 
+  // Understanding Observables
+
+
+  // Handling Forms in Angular Apps
+  {path: 'reactive-form', component: ReactiveFormComponent},
+  {path: 'template-form', component: TemplateFormComponent},
+
+  // Router
+  {path: 'router-header', component: HeaderComponent},
+  {path: 'router-login', component: RouterLoginComponent},
+  {
+    path: 'job', component: JobsComponent, children: [
+      {path: 'job-post', component: JobPostComponent},
+      {path: 'job-list', component: JobListComponent},
+      {path: 'job-detail/:id/:title/:company/:place/:jobCreatedTime', component: JobDetailsComponent}
+    ]
+  },
+  {path: 'page-not-found', component: PageNotFoundComponent},
+  {path: '**', redirectTo: 'page-not-found'},
 ];
 
 @NgModule({
@@ -31,5 +60,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule {
 }

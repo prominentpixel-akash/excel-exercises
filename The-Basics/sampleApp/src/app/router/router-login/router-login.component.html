@@ -1,0 +1,32 @@
+<p>Router Login Page</p>
+
+<form #loginForm="ngForm"
+      (ngSubmit)="loginForm.form.valid && onSubmit()"
+      class="form-section" name="form"
+      novalidate>
+
+  <label>User Name</label>&nbsp;
+  <input type="text" #username="ngModel"
+         [(ngModel)]="loginModel.username"
+         name="username"
+         [ngClass]="{ 'is-invalid': loginForm.submitted && username.invalid }"
+         required><br>
+  <div *ngIf="loginForm.submitted && username.invalid" class="invalid-feedback">
+    <div *ngIf="username.errors.required">User Name is required.</div>
+  </div>
+  <br><br>
+
+  <label>Password</label>&nbsp;
+  <input type="password" #password="ngModel"
+         [(ngModel)]="loginModel.password"
+         name="password"
+         [ngClass]="{ 'is-invalid' : loginForm.submitted && password.invalid}"
+         required>
+
+  <div *ngIf="loginForm.submitted && password.invalid" class="invalid-feedback">
+    <div *ngIf="password.errors.required">Password is required.</div>
+  </div>
+  <br><br>
+
+  <button class="btn btn-primary" routerLinkActive="active" type="submit" (click)="onSubmit()">Submit</button>
+</form>

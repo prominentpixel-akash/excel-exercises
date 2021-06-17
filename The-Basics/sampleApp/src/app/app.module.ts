@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import {ExeAngularComp} from './example-angular/example-angular';
 import {UserExampleComponent} from './user-example/example-angular';
 import { BlankArrayComponent } from './blank-array/blank-array.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AngularDropdownComponent } from './angular-dropdown/angular-dropdown.component';
 import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 import { HeaderComponent } from './header/header.component';
@@ -17,6 +17,14 @@ import { UserComponent } from './user/user.component';
 import { AngularLifecycleComponent } from './angular-lifecycle/angular-lifecycle.component';
 import { StudentComponent } from './student/student.component';
 import { LoginComponent } from './login/login.component';
+import { JobPostComponent } from './router/job-post/job-post.component';
+import { JobListComponent } from './router/job-list/job-list.component';
+import { JobDetailsComponent } from './router/job-details/job-details.component';
+import { JobsComponent } from './router/jobs/jobs.component';
+import { RouterLoginComponent } from './router/router-login/router-login.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { TemplateFormComponent } from './template-form/template-form.component';
 
 @NgModule({
   declarations: [
@@ -32,12 +40,21 @@ import { LoginComponent } from './login/login.component';
     UserComponent,
     AngularLifecycleComponent,
     StudentComponent,
-    LoginComponent
+    LoginComponent,
+    JobPostComponent,
+    JobListComponent,
+    JobDetailsComponent,
+    JobsComponent,
+    RouterLoginComponent,
+    PageNotFoundComponent,
+    ReactiveFormComponent,
+    TemplateFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [],

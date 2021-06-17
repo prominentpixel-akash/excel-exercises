@@ -1,0 +1,26 @@
+<p>Job List Page</p>
+
+<table border="1">
+  <thead>
+  <th>ID</th>
+  <th>Title</th>
+  <th>Company</th>
+  <th>Place</th>
+  <th>Created Time</th>
+  <th>Action</th>
+  </thead>
+  <tbody>
+  <tr *ngFor="let job of jobListDetail; let i = index">
+    <td (click)="tableRowSelected(job)">{{job.id}}</td>
+    <td (click)="tableRowSelected(job)">{{job.title}}</td>
+    <td (click)="tableRowSelected(job)">{{job.company}}</td>
+    <td (click)="tableRowSelected(job)">{{job.place}}</td>
+    <td (click)="tableRowSelected(job)">{{job.jobCreatedTime}}</td>
+    <td>
+      <button class="btn btn-primary" type="button" routerLinkActive="active" (click)="editJobPost(job)"
+              routerLink="/job-post">Edit Job
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
