@@ -1,0 +1,21 @@
+<!-- create two comp. 'user' and 'admin',add both in app comp.
+In user component create three input which will take (first-name,family-name,country) and one submit button(on click this button create new user)
+In admin component create simple template which will take user as input and will render  first-name,family-name,country in it's html
+also use localReference and ViewChild to get Input from html to ts file-->
+
+<h2>Local References and @ViewChild</h2><br>
+
+<label>First Name</label>
+<input type="text" class="form-control" name="firstName" #firstName><br><br>
+
+<label>Family Name</label>
+<input type="text" class="form-control" name="familyName" #familyName><br><br>
+
+<label>Country</label>
+<input type="text" class="form-control" name="country" #country><br><br>
+
+<button class="btn btn-primary" (click)="onSubmit()" type="submit">Submit</button><br><br>
+
+<div>First Name : {{firstNames}}</div>
+<div>Family Name : {{familyNames}}</div>
+<div>Country : {{countries}}</div>

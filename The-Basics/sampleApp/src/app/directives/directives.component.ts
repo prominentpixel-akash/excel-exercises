@@ -11,10 +11,13 @@ export class DirectivesComponent implements OnInit {
   constructor() {
   }
 
-  customDirective = [{colour: 'red', text: 'RED'},
-    {colour: 'green', text: 'GREEN'},
-    {colour: 'blue', text: 'BLUE'},
-    {colour: 'yellow', text: 'YELLOW'}];
+  colours = [
+    {id: 1, colour: 'Red', text: 'RED'},
+    {id: 2, colour: 'Green', text: 'GREEN'},
+    {id: 3, colour: 'Yellow', text: 'YELLOW'},
+    {id: 4, colour: 'Orange', text: 'ORANGE'},
+    {id: 5, colour: 'Pink', text: 'PINK'}
+  ];
 
   ngOnInit(): void {
   }

@@ -13,6 +13,10 @@ import { HeaderComponent } from './header/header.component';
 import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './child/child.component';
 import { DirectivesComponent } from './directives/directives.component';
+import { UserComponent } from './user/user.component';
+import { AngularLifecycleComponent } from './angular-lifecycle/angular-lifecycle.component';
+import { StudentComponent } from './student/student.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { DirectivesComponent } from './directives/directives.component';
     HeaderComponent,
     ParentComponent,
     ChildComponent,
-    DirectivesComponent
+    DirectivesComponent,
+    UserComponent,
+    AngularLifecycleComponent,
+    StudentComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

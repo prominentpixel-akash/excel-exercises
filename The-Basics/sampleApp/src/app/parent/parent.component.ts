@@ -10,9 +10,20 @@ export class ParentComponent implements OnInit {
   constructor() {
   }
 
-  color = ['red', 'green', 'blue', 'white'];
+  selectedColor: any;
+
+  colors = [
+    {id: 1, name: 'Red'},
+    {id: 2, name: 'Green'},
+    {id: 3, name: 'Yellow'},
+    {id: 4, name: 'Orange'},
+    {id: 5, name: 'Pink'}
+  ];
 
   ngOnInit(): void {
   }
 
+  onChange(value: any) {
+    this.selectedColor = value;
+  }
 }
