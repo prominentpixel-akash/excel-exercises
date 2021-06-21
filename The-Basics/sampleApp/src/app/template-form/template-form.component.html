@@ -1,0 +1,107 @@
+<p>Template Driven Form</p>
+<form #employeeForm="ngForm"
+      (ngSubmit)="employeeForm.form.valid && onSubmit()"
+      class="form-section"
+      name="form" novalidate>
+
+  <div class="modal-body">
+    <div class="row">
+      <div class="form-group">
+        Name
+        <input #name="ngModel"
+               type="text"
+               [(ngModel)]="employeeModal.name"
+               [ngClass]="{ 'is-invalid': employeeForm.submitted && name.errors }"
+               class="form-control"
+               name="Name"
+               required>
+        <div *ngIf="employeeForm.submitted && name.invalid" class="invalid-feedback">
+          <div *ngIf="name.errors.required">Name is Required</div>
+        </div>
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label>Company</label>&nbsp;
+        <input #company="ngModel"
+               placeholder="Company"
+               required [(ngModel)]="employeeModal.company"
+               id="company"
+               type="text"
+               name="company"
+               [ngClass]="{ 'is-invalid': employeeForm.submitted && company.errors }"/>
+        <div *ngIf="employeeForm.submitted && company.invalid" class="invalid-feedback">
+          <div *ngIf="company.errors.required">Company is Required</div>
+        </div>
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label>Area</label>&nbsp;
+        <select name="area" id="area" required
+                [ngClass]="{ 'is-invalid': employeeForm.submitted && area.errors }"
+                #area="ngModel" [(ngModel)]="employeeModal.area">
+          <option disabled>Select Area</option>
+          <option value="rajkot">Rajkot</option>
+          <option value="amd">Ahmedabad</option>
+          <option value="baroda">Baroda</option>
+        </select>
+        <div *ngIf="employeeForm.submitted && area.invalid" class="invalid-feedback">
+          <div *ngIf="area.errors.required">Area is Required</div>
+        </div>
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label>Gender</label>
+        <div class="form-check" *ngFor="let gen of gender">
+          <input class="form-check-input"
+                 (change)="onChange(gen.name, $event.target.checked)"
+                 name="{{ gen.name }}"
+                 type="checkbox"
+                 id="{{gen.name}}">
+          <label class="form-check-label" for="{{gen.name}}">
+            {{gen.name}}
+          </label>
+        </div>
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label>isNewToCompany</label>&nbsp;
+        <input
+          [(ngModel)]="employeeModal.isNewToCompany"
+          name="isNewToCompany"
+          id="yes" #isNewToCompany="ngModel"
+          type="radio"
+          value="yes"/>
+        <label>Yes</label>
+        <input [(ngModel)]="employeeModal.isNewToCompany"
+               name="isNewToCompany"
+               id="no" #isNewToCompany="ngModel"
+               type="radio"
+               value="no"/>
+        <label>No</label>
+      </div>
+      <br>
+
+      <div class="form-group">
+        <label>Mobile No</label>&nbsp;
+        <input placeholder="+000-00-000" #mobile="ngModel"
+               type="text" [maxLength]="11" required
+               id="mobile" name="mobile"
+               [(ngModel)]="employeeModal.mobile"/>
+
+        <div *ngIf="employeeForm.submitted && mobile.invalid" class="invalid-feedback">
+          <div *ngIf="mobile.errors.required">Mobile Number is Required</div>
+          <div *ngIf="mobile.errors.pattern">Invalid Mobile Number</div>
+        </div>
+      </div>
+      <br>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+</form>

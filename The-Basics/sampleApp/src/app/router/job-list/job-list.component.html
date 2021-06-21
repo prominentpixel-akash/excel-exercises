@@ -11,14 +11,15 @@
   </thead>
   <tbody>
   <tr *ngFor="let job of jobListDetail; let i = index">
-    <td (click)="tableRowSelected(job)">{{job.id}}</td>
-    <td (click)="tableRowSelected(job)">{{job.title}}</td>
-    <td (click)="tableRowSelected(job)">{{job.company}}</td>
-    <td (click)="tableRowSelected(job)">{{job.place}}</td>
-    <td (click)="tableRowSelected(job)">{{job.jobCreatedTime}}</td>
+    <td (click)="tableRowSelected(job.id)">{{job.id}}</td>
+    <td (click)="tableRowSelected(job.id)">{{job.title}}</td>
+    <td (click)="tableRowSelected(job.id)">{{job.company}}</td>
+    <td (click)="tableRowSelected(job.id)">{{job.place}}</td>
+    <td (click)="tableRowSelected(job.id)">{{job.jobCreatedTime}}</td>
     <td>
-      <button class="btn btn-primary" type="button" routerLinkActive="active" (click)="editJobPost(job)"
-              routerLink="/job-post">Edit Job
+      <button class="btn btn-primary" type="button" routerLinkActive="active"
+              [routerLink]="['job-post']"
+              [queryParams]="{id: job.id}">Edit Job
       </button>
     </td>
   </tr>

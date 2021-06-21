@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import {LoginService} from '../service/login.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-router-login',
@@ -7,31 +9,38 @@ import {Router} from '@angular/router';
   styleUrls: ['./router-login.component.scss']
 })
 export class RouterLoginComponent implements OnInit {
-  loginModel: any = {};
   submitted = false;
+  errorMessage: any;
+  loginForm: FormGroup;
+  username: any;
+  password: any;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private formBuilder: FormBuilder,
+              private loginService: LoginService) {
   }
 
   ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+    });
   }
 
   onSubmit() {
     this.submitted = true;
-    if (this.loginModel === undefined || this.loginModel === '') {
-      return false;
-    } else {
-      if (this.loginModel.username == this.loginModel.password) {
+    if (!this.loginForm.valid) {
+      return;
+    }
+
+    this.loginService.login(this.loginForm.value).subscribe(data => {
+      console.log('Login Successfully ' + data);
+
+      if (data) {
         this.router.navigate(['job']);
       } else {
-        console.log('Plese enter valid username and password');
-        this.clearInputData();
+        this.errorMessage = 'Please enter valid username and password';
       }
-    }
-  }
-
-  clearInputData() {
-    this.loginModel.username = '';
-    this.loginModel.password = '';
+    });
   }
 }

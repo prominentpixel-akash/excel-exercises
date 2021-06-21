@@ -16,6 +16,7 @@ import {RouterLoginComponent} from './router/router-login/router-login.component
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {ReactiveFormComponent} from './reactive-form/reactive-form.component';
 import {TemplateFormComponent} from './template-form/template-form.component';
+import {ObservablesComponent} from './observables/observables.component';
 
 const routes: Routes = [
 
@@ -41,6 +42,9 @@ const routes: Routes = [
   {path: 'reactive-form', component: ReactiveFormComponent},
   {path: 'template-form', component: TemplateFormComponent},
 
+  // observables
+  {path: 'observables', component: ObservablesComponent},
+
   // Router
   {path: 'router-header', component: HeaderComponent},
   {path: 'router-login', component: RouterLoginComponent},
@@ -48,7 +52,7 @@ const routes: Routes = [
     path: 'job', component: JobsComponent, children: [
       {path: 'job-post', component: JobPostComponent},
       {path: 'job-list', component: JobListComponent},
-      {path: 'job-detail/:id/:title/:company/:place/:jobCreatedTime', component: JobDetailsComponent}
+      {path: 'job-detail/:id', component: JobDetailsComponent}
     ]
   },
   {path: 'page-not-found', component: PageNotFoundComponent},

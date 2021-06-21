@@ -1,7 +1,10 @@
-<p>Job Detail Page</p>
-
-<p>ID : {{ this.jobId}}</p>
-<p>Title : {{this.jobTitle}}</p>
-<p>Company : {{this.jobCompany}}</p>
-<p>Place : {{this.jobPlace}}</p>
-<p>Created Time : {{this.jobCreatedTime}}</p>
+<div style="text-align:center">
+  <p>Job Detail Page</p>
+  <ul *ngFor="let job of jobDetails">
+    {{job.id}}
+    {{job.title}}
+    {{job.company}}
+    {{job.place}}
+    {{job.jobCreatedTime}}
+  </ul>
+</div>

@@ -1,32 +1,29 @@
 <p>Router Login Page</p>
 
-<form #loginForm="ngForm"
-      (ngSubmit)="loginForm.form.valid && onSubmit()"
-      class="form-section" name="form"
-      novalidate>
+<form role="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
   <label>User Name</label>&nbsp;
-  <input type="text" #username="ngModel"
-         [(ngModel)]="loginModel.username"
+  <input type="text"
+         formControlName="username"
+         [ngClass]="{ 'is-invalid': submitted && loginForm.controls.username.errors }"
          name="username"
-         [ngClass]="{ 'is-invalid': loginForm.submitted && username.invalid }"
          required><br>
-  <div *ngIf="loginForm.submitted && username.invalid" class="invalid-feedback">
-    <div *ngIf="username.errors.required">User Name is required.</div>
+  <div *ngIf="submitted && loginForm.controls.username.errors" class="invalid-feedback">
+    <div *ngIf="loginForm.controls.username.errors.required">User Name is Required</div>
   </div>
   <br><br>
 
   <label>Password</label>&nbsp;
-  <input type="password" #password="ngModel"
-         [(ngModel)]="loginModel.password"
+  <input type="password" formControlName="password"
+         [ngClass]="{ 'is-invalid': submitted && loginForm.controls.password.errors }"
          name="password"
-         [ngClass]="{ 'is-invalid' : loginForm.submitted && password.invalid}"
          required>
 
-  <div *ngIf="loginForm.submitted && password.invalid" class="invalid-feedback">
-    <div *ngIf="password.errors.required">Password is required.</div>
+  <div *ngIf="submitted && loginForm.controls.password.errors" class="invalid-feedback">
+    <div *ngIf="loginForm.controls.password.errors.required">Password is required</div>
   </div>
-  <br><br>
-
+  <br>
+  {{this.errorMessage}}
+  <br>
   <button class="btn btn-primary" routerLinkActive="active" type="submit" (click)="onSubmit()">Submit</button>
 </form>

@@ -15,30 +15,6 @@ export class JobListComponent implements OnInit {
 
   jobListDetail: any;
 
-  /*  jobArray: any = [
-      {
-        id: 1,
-        title: 'Java',
-        company: 'ABC',
-        place: 'Rajkot',
-        jobCreatedTime: '17-06-2021'
-      },
-      {
-        id: 2,
-        title: 'PHP',
-        company: 'DEF',
-        place: 'Rajkot',
-        jobCreatedTime: '10-06-2021'
-      },
-      {
-        id: 3,
-        title: 'Angular',
-        company: 'XYZ',
-        place: 'Rajkot',
-        jobCreatedTime: '01-06-2021'
-      }
-    ];*/
-
   ngOnInit(): void {
     this.getJobList();
   }
@@ -49,12 +25,7 @@ export class JobListComponent implements OnInit {
     });
   }
 
-
-  tableRowSelected(job: any) {
-    this.router.navigate([`job/job-detail/${job.id}/${job.title}/${job.company}/${job.place}/${job.jobCreatedTime}`]);
-  }
-
-  editJobPost(job: any) {
-
+  tableRowSelected(jobId: any) {
+    this.router.navigate([`job/job-detail/${jobId}`]);
   }
 }

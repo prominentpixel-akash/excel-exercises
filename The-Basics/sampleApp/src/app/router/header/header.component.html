@@ -1,4 +1,5 @@
 <p>Router Header Page</p>
 
-<button type="button" class="btn btn-primary" (click)="onLogin()">Login</button>&nbsp;&nbsp;
-<button type="button" class="btn btn-primary">Jobs</button>
+<button type="button" class="btn btn-primary" routerLinkActive="true" (click)="onLogin()">Login</button>&nbsp;&nbsp;
+<button type="button" class="btn btn-primary" routerLinkActive="true" (click)="onJobs()">Jobs</button>
+{{errorMessage}}
