@@ -56,9 +56,11 @@ export class ReactiveFormComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+
     if (!this.employeeForm.valid) {
-      return;
+      return true;
+    }else{
+      console.table(this.employeeForm.value);
     }
-    console.log(this.employeeForm.value);
   }
 }

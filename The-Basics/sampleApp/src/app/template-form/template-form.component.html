@@ -10,13 +10,14 @@
         Name
         <input #name="ngModel"
                type="text"
-               [(ngModel)]="employeeModal.name"
+               [(ngModel)]="employeeModal.name" pattern="^\s*[A-Z][a-z]+(\s?$|\s{1,}[A-Z][a-z])"
                [ngClass]="{ 'is-invalid': employeeForm.submitted && name.errors }"
                class="form-control"
                name="Name"
                required>
         <div *ngIf="employeeForm.submitted && name.invalid" class="invalid-feedback">
           <div *ngIf="name.errors.required">Name is Required</div>
+          <div *ngIf="name.errors.pattern">Must start from Capital Letter</div>
         </div>
       </div>
       <br>
@@ -88,8 +89,8 @@
       <div class="form-group">
         <label>Mobile No</label>&nbsp;
         <input placeholder="+000-00-000" #mobile="ngModel"
-               type="text" [maxLength]="11" required
-               id="mobile" name="mobile"
+               type="text" [maxLength]="11" required [minlength]="11"
+               id="mobile" name="mobile" pattern="^\+?\d{3}[- ]?\d{2}[- ]?\d{3}$"
                [(ngModel)]="employeeModal.mobile"/>
 
         <div *ngIf="employeeForm.submitted && mobile.invalid" class="invalid-feedback">

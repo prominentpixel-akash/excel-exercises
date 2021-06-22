@@ -19,7 +19,6 @@ export class PipeTransformOutputComponent implements OnInit {
   // Second way
   stringText = 'this are the components';
 
-
   // Third way
   // The regular expression literal /\s/g (note the g global flag) matches the space ' '.
 

@@ -6,10 +6,11 @@
         <label for="name">Name</label>&nbsp;
         <input placeholder="Name"
                id="name" required
+               [ngClass]="{ 'is-invalid': submitted && getForm.name.errors }"
                type="text"
                formControlName="name"/>
-        <div *ngIf="getForm.name.touched && getForm.name.invalid" class="invalid-feedback">
-          <div *ngIf="getForm.name.errors.required">Name is required</div>
+        <div *ngIf="(submitted || getForm.name.touched) && getForm.name.invalid" class="invalid-feedback">
+          <div *ngIf="getForm.name.errors.required">First Name is required</div>
           <div *ngIf="getForm.name.errors.pattern">Must start from Capital Letter</div>
         </div>
       </div>
@@ -19,8 +20,9 @@
         <label for="name">Company</label>&nbsp;
         <input placeholder="Company" required
                id="company" type="text" name="company"
+               [ngClass]="{ 'is-invalid': submitted && getForm.company.errors }"
                formControlName="company"/>
-        <div *ngIf="getForm.company.touched && getForm.company.invalid" class="invalid-feedback">
+        <div *ngIf="(getForm.company.touched || submitted) && getForm.company.invalid" class="invalid-feedback">
           <div *ngIf="getForm.company.errors.required">Company is required</div>
         </div>
       </div>
@@ -29,13 +31,14 @@
       <div class="form-group">
         <label>Area</label>&nbsp;
         <select name="area" id="area" required
+                [ngClass]="{ 'is-invalid': submitted && getForm.area.errors }"
                 formControlName="area">
           <option disabled>Select Area</option>
           <option value="rajkot">Rajkot</option>
           <option value="amd">Ahmedabad</option>
           <option value="baroda">Baroda</option>
         </select>
-        <div *ngIf="getForm.area.touched && getForm.area.invalid" class="invalid-feedback">
+        <div *ngIf="(submitted || getForm.area.touched) && getForm.area.invalid" class="invalid-feedback">
           <div *ngIf="getForm.area.errors.required">Area is required</div>
         </div>
       </div>
@@ -75,7 +78,7 @@
                type="text" [maxLength]="11" required
                id="mobile" name="mobile"
                formControlName="mobile"/>
-        <div *ngIf="getForm.mobile.invalid && getForm.mobile.touched" class="invalid-feedback">
+        <div *ngIf="getForm.mobile.invalid && (submitted || getForm.mobile.touched)" class="invalid-feedback">
           <div *ngIf="getForm.mobile.errors.required">Mobile Number is required.</div>
           <div *ngIf="getForm.mobile.errors.pattern">Invalid Mobile Number.</div>
         </div>

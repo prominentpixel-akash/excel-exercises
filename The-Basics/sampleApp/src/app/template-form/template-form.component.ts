@@ -31,6 +31,7 @@ export class TemplateFormComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    console.table(this.employeeModal);
     alert(JSON.stringify(this.employeeModal));
   }
 }
