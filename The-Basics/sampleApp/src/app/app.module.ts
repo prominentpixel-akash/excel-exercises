@@ -27,6 +27,8 @@ import {ReactiveFormComponent} from './reactive-form/reactive-form.component';
 import {TemplateFormComponent} from './template-form/template-form.component';
 import {ObservablesComponent} from './observables/observables.component';
 import {HttpClientModule} from '@angular/common/http';
+import { PipeTransformOutputComponent } from './pipe-transform-output/pipe-transform-output.component';
+import {ReplacePipe} from './util/replace.pipe';
 
 
 @NgModule({
@@ -52,7 +54,9 @@ import {HttpClientModule} from '@angular/common/http';
     PageNotFoundComponent,
     ReactiveFormComponent,
     TemplateFormComponent,
-    ObservablesComponent
+    ObservablesComponent,
+    PipeTransformOutputComponent,
+    ReplacePipe
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,11 @@ import {interval, Subscription} from 'rxjs';
 })
 export class ObservablesComponent implements OnInit {
 
+  stringArray = ['abcdefghi'];
+  randomArray = this.stringArray[Math.floor(Math.random() * this.stringArray.length)];
+
   private firstSubscription: Subscription;
+
   constructor() {
   }
 

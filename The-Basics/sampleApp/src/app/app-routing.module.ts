@@ -17,6 +17,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {ReactiveFormComponent} from './reactive-form/reactive-form.component';
 import {TemplateFormComponent} from './template-form/template-form.component';
 import {ObservablesComponent} from './observables/observables.component';
+import {PipeTransformOutputComponent} from './pipe-transform-output/pipe-transform-output.component';
 
 const routes: Routes = [
 
@@ -44,6 +45,9 @@ const routes: Routes = [
 
   // observables
   {path: 'observables', component: ObservablesComponent},
+
+  // Using Pipes to Transform Output
+  {path: 'pipe', component: PipeTransformOutputComponent},
 
   // Router
   {path: 'router-header', component: HeaderComponent},
