@@ -18,6 +18,8 @@ import {ReactiveFormComponent} from './reactive-form/reactive-form.component';
 import {TemplateFormComponent} from './template-form/template-form.component';
 import {ObservablesComponent} from './observables/observables.component';
 import {PipeTransformOutputComponent} from './pipe-transform-output/pipe-transform-output.component';
+import {HttpRequestManageUserComponent} from './http-request-manage-user/http-request-manage-user.component';
+import {HttpRequestCreateUserComponent} from './http-request-create-user/http-request-create-user.component';
 
 const routes: Routes = [
 
@@ -48,6 +50,10 @@ const routes: Routes = [
 
   // Using Pipes to Transform Output
   {path: 'pipe', component: PipeTransformOutputComponent},
+
+  // Making Http Requests
+  {path: 'manage-http-user', component: HttpRequestManageUserComponent},
+  {path: 'create-http-user', component: HttpRequestCreateUserComponent},
 
   // Router
   {path: 'router-header', component: HeaderComponent},

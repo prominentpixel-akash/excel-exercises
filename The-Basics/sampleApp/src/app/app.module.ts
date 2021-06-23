@@ -29,6 +29,10 @@ import {ObservablesComponent} from './observables/observables.component';
 import {HttpClientModule} from '@angular/common/http';
 import { PipeTransformOutputComponent } from './pipe-transform-output/pipe-transform-output.component';
 import {ReplacePipe} from './util/replace.pipe';
+import { HttpRequestCreateUserComponent } from './http-request-create-user/http-request-create-user.component';
+import { HttpRequestManageUserComponent } from './http-request-manage-user/http-request-manage-user.component';
+import {MaskService} from './service/mask.service';
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 
 
 @NgModule({
@@ -56,7 +60,9 @@ import {ReplacePipe} from './util/replace.pipe';
     TemplateFormComponent,
     ObservablesComponent,
     PipeTransformOutputComponent,
-    ReplacePipe
+    ReplacePipe,
+    HttpRequestCreateUserComponent,
+    HttpRequestManageUserComponent
   ],
   imports: [
     BrowserModule,
@@ -64,10 +70,16 @@ import {ReplacePipe} from './util/replace.pipe';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    NgxDatatableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  maskConfig: any;
+
+  constructor() {
+    this.maskConfig = MaskService.config;
+  }
 }

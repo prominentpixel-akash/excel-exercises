@@ -1,0 +1,106 @@
+<div class="card">
+  <div class="card-header">Create User</div>
+  <div class="card-body">
+    <div class="container">
+      <br>
+      <form name="form" (ngSubmit)="userForm.form.valid && onSubmit()" #userForm="ngForm" novalidate>
+        <div class="form-group">
+          <label class="control-label col-sm-2">First Name <span style="color:red">*</span>
+          </label>
+          <div class="col-sm-10">
+            <input type="text" placeholder="First Name" id="firstName" name="firstName"
+                   [(ngModel)]="userModel.firstName" #firstName="ngModel"
+                   [ngClass]="{ 'is-invalid': userForm.submitted && firstName.invalid }" required
+                   class="form-control"/>
+            <div *ngIf="userForm.submitted && firstName.invalid" class="invalid-feedback">
+              <div *ngIf="firstName.errors.required">First Name is required</div>
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Last Name</label>
+          <div class="col-sm-10">
+            <input type="text" placeholder="Last Name" id="lastName" name="lastName" [(ngModel)]="userModel.lastName"
+                   #lastName="ngModel"
+                   class="form-control"/>
+          </div>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Email <span style="color:red">*</span></label>
+          <div class="col-sm-10">
+            <input type="text" placeholder="Email" id="email" name="email" [(ngModel)]="userModel.email"
+                   #email="ngModel"
+                   [ngClass]="{ 'is-invalid': userForm.submitted && email.invalid }" required
+                   class="form-control"/>
+            <div *ngIf="userForm.submitted && email.invalid" class="invalid-feedback">
+              <div *ngIf="email.errors.required">Email is required</div>
+              <div *ngIf="email.errors.email">Email must be a valid email address</div>
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Password <span style="color:red">*</span></label>
+          <div class="col-sm-10">
+            <input type="password" placeholder="Password" id="password" name="password" [(ngModel)]="userModel.password"
+                   #password="ngModel"
+                   [ngClass]="{ 'is-invalid': userForm.submitted && password.invalid }" required
+                   class="form-control"/>
+            <div *ngIf="userForm.submitted && password.invalid" class="invalid-feedback">
+              <div *ngIf="password.errors.required">Password is required</div>
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <label class="control-label col-sm-2">Mobile</label>
+          <div class="col-sm-10">
+            <input type="text" placeholder="Mobile" id="mobile" name="mobile" [(ngModel)]="userModel.mobile"
+                   #mobile="ngModel"
+                   class="form-control"/>
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <label class="control-label col-sm-2">NewCompany</label>
+          <div class="col-sm-10">
+            <input type="checkbox" id="newCompany"
+                   name="newCompany"
+                   [(ngModel)]="userModel.newCompany"
+                   #newCompany="ngModel"
+                   class="form-control"/>
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <label class="control-label col-sm-2">Status <span style="color:red">*</span></label>
+          <div class="col-sm-10">
+            <select id="status" name="status" [(ngModel)]="userModel.status"
+                    #status="ngModel" class="form-control"
+                    [ngClass]="{ 'is-invalid': userForm.submitted && status.invalid }" required>
+              <option value="" selected>Select Status</option>
+              <option value="ACTIVE">ACTIVE</option>
+              <option value="INACTIVE">IN-ACTIVE</option>
+            </select>
+            <div *ngIf="userForm.submitted && status.invalid" class="invalid-feedback">
+              <div *ngIf="status.errors.required">Status is required</div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="row text-right">
+          <div class="col-md-12">
+            <button class="btn btn-group-lg btn-primary mr-1" type="submit">Save&nbsp;</button>&nbsp;
+            <button class="btn btn-group-lg btn-secondary" [routerLink]="['/manage-http-crud']">Cancel</button>&nbsp;&nbsp;
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
