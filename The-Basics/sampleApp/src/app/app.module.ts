@@ -33,6 +33,8 @@ import { HttpRequestCreateUserComponent } from './http-request-create-user/http-
 import { HttpRequestManageUserComponent } from './http-request-manage-user/http-request-manage-user.component';
 import {MaskService} from './service/mask.service';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
+import { AuthenticationRouteProtectionComponent } from './authentication-route-protection/authentication-route-protection.component';
+import { AuthComponent } from './auth/auth.component';
 
 
 @NgModule({
@@ -62,7 +64,9 @@ import {NgxDatatableModule} from '@swimlane/ngx-datatable';
     PipeTransformOutputComponent,
     ReplacePipe,
     HttpRequestCreateUserComponent,
-    HttpRequestManageUserComponent
+    HttpRequestManageUserComponent,
+    AuthenticationRouteProtectionComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

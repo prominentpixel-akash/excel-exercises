@@ -20,6 +20,8 @@ import {ObservablesComponent} from './observables/observables.component';
 import {PipeTransformOutputComponent} from './pipe-transform-output/pipe-transform-output.component';
 import {HttpRequestManageUserComponent} from './http-request-manage-user/http-request-manage-user.component';
 import {HttpRequestCreateUserComponent} from './http-request-create-user/http-request-create-user.component';
+import {AuthenticationRouteProtectionComponent} from './authentication-route-protection/authentication-route-protection.component';
+import {AuthComponent} from './auth/auth.component';
 
 const routes: Routes = [
 
@@ -54,6 +56,10 @@ const routes: Routes = [
   // Making Http Requests
   {path: 'manage-http-user', component: HttpRequestManageUserComponent},
   {path: 'create-http-user', component: HttpRequestCreateUserComponent},
+
+  // Authentication & Route Protection in Angular
+  {path: 'authentication', component: AuthenticationRouteProtectionComponent},
+  {path: 'auth', component: AuthComponent},
 
   // Router
   {path: 'router-header', component: HeaderComponent},

@@ -11,8 +11,6 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import java.util.Collections;
-
 @ComponentScan({"com.prominentpixel"})
 @SpringBootApplication
 public class AngularexcerciseApplication {
@@ -26,13 +24,12 @@ public class AngularexcerciseApplication {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-     //   config.addAllowedOrigin("*");
+        config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
         config.addAllowedMethod(HttpMethod.GET.name());
         config.addAllowedMethod(HttpMethod.POST.name());
         config.addAllowedMethod(HttpMethod.PUT.name());
         config.addAllowedMethod(HttpMethod.DELETE.name());
-        config.setAllowedOrigins(Collections.singletonList("*"));
         source.registerCorsConfiguration("/**", config);
         FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
         bean.setOrder(Ordered.HIGHEST_PRECEDENCE);

@@ -39,7 +39,6 @@ public class UserController {
         return userService.getUsers(pageNumber, pageSize, searchTerm, sortColumn, sortOrder);
     }
 
-
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public UserDTO getUserById(@PathVariable(value = "id") Long id) {
         return userService.getUserById(id);

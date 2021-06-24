@@ -3,6 +3,7 @@ package com.prominentpixel.angularexcercise.service.serviceImpl;
 import com.prominentpixel.angularexcercise.dao.UserDAO;
 import com.prominentpixel.angularexcercise.domain.User;
 import com.prominentpixel.angularexcercise.dto.UserDTO;
+import com.prominentpixel.angularexcercise.exception.PPException;
 import com.prominentpixel.angularexcercise.mapper.UserMapper;
 import com.prominentpixel.angularexcercise.service.UserService;
 import com.prominentpixel.angularexcercise.utils.CommonConstants;
@@ -29,6 +30,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
+
+        if (userDAO.findByEmail(userDTO.getEmail()).isPresent()) {
+            throw new PPException(CommonConstants.USER_ALREADY_EXIST);
+        }
+
         User userObj = new User();
         userObj.setFirstName(userDTO.getFirstName());
         userObj.setLastName(userDTO.getLastName());
@@ -94,4 +100,5 @@ public class UserServiceImpl implements UserService {
         User fetchedUser = userDAO.findById(id).get();
         return userMapper.convertUser(fetchedUser);
     }
+
 }

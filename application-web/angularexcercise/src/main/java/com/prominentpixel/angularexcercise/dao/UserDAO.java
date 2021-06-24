@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 @Repository
@@ -28,4 +29,6 @@ public interface UserDAO extends JpaRepository<User, Long> {
 
     @Query("SELECT COUNT(e) FROM User e WHERE lower(e.firstName) like %:searchTerm%")
     Long countBySearchTerm(String searchTerm);
+
+    Optional<User> findByEmail(String email);
 }
