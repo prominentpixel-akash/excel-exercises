@@ -21,16 +21,20 @@
   Custom Theme Directive Demo with Custom Settings
 </div>
 
+<h2>Fruit Available</h2>
+<ul class="newcomp">
+  <li *ngFor="let fruit of fruits"
+      [class.selected]="fruit === selectedFruits"
+      (click)="onSelect(fruit)">
+    <span class="badge">{{fruit.id}}{{fruit.name}}</span>
+  </li>
+</ul>
 
-<table>
-  <tr>
-    <td>
-      <label>Please enter your password :-</label>
-    </td>
-    <td>
-      <input type="text" app-directives defaultValue="3"/>
-    </td>
-  </tr>
-</table>
+<div *ngIf="selectedFruits">
+  <h2>{{selectedFruits.name | uppercase}} Details</h2>
 
-
+  <div>
+    <label>Name</label>
+    <input [(ngModel)]="selectedFruits.name" placeholder="name">
+  </div>
+</div>
