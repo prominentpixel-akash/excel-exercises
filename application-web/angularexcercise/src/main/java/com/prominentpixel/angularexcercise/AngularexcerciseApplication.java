@@ -11,7 +11,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-@ComponentScan({"com.prominentpixel"})
+@ComponentScan
 @SpringBootApplication
 public class AngularexcerciseApplication {
 

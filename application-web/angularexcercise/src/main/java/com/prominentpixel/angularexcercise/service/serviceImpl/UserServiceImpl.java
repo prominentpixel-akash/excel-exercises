@@ -12,12 +12,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.MessageDigestPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -27,6 +27,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserMapper userMapper;
+
+    PasswordEncoder getPasswordEncoder() {
+        return new MessageDigestPasswordEncoder("MD5");
+    }
 
     @Override
     public UserDTO createUser(UserDTO userDTO) {
@@ -41,7 +45,7 @@ public class UserServiceImpl implements UserService {
         userObj.setEmail(userDTO.getEmail());
         userObj.setMobile(userDTO.getMobile());
         userObj.setStatus(userDTO.getStatus());
-        userObj.setPassword(userDTO.getPassword());
+        userObj.setPassword(getPasswordEncoder().encode(userDTO.getPassword()));
         userObj.setNewCompany(userDTO.getNewCompany());
         userDAO.save(userObj);
         return userDTO;
@@ -73,25 +77,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUserById(Long id) {
-        System.out.println("Delete Operation" + id);
         userDAO.deActivateUser(id);
     }
 
     @Override
     public void updateUser(UserDTO userDTO) throws Exception {
-        Optional<User> updatedUser = userDAO.findById(userDTO.getId());
+        User updatedUser = userDAO.findById(userDTO.getId()).get();
         if (updatedUser == null) {
-            throw new Exception(CommonConstants.USER_NOT_FOUND + updatedUser.get().getId());
+            throw new Exception(CommonConstants.USER_NOT_FOUND + updatedUser.getId());
         } else {
-            updatedUser.get().setFirstName(userDTO.getFirstName());
-            updatedUser.get().setLastName(userDTO.getLastName());
-            updatedUser.get().setMobile(userDTO.getMobile());
-            updatedUser.get().setPassword(userDTO.getPassword());
-            updatedUser.get().setEmail(userDTO.getEmail());
-            updatedUser.get().setStatus(userDTO.getStatus());
-            updatedUser.get().setId(userDTO.getId());
-            updatedUser.get().setNewCompany(userDTO.getNewCompany());
-            userDAO.save(updatedUser.get());
+            updatedUser.setFirstName(userDTO.getFirstName());
+            updatedUser.setLastName(userDTO.getLastName());
+            updatedUser.setMobile(userDTO.getMobile());
+            updatedUser.setPassword(userDTO.getPassword());
+            updatedUser.setEmail(userDTO.getEmail());
+            updatedUser.setStatus(userDTO.getStatus());
+            updatedUser.setId(userDTO.getId());
+            updatedUser.setNewCompany(userDTO.getNewCompany());
+            userDAO.save(updatedUser);
         }
     }
 
@@ -100,5 +103,4 @@ public class UserServiceImpl implements UserService {
         User fetchedUser = userDAO.findById(id).get();
         return userMapper.convertUser(fetchedUser);
     }
-
 }

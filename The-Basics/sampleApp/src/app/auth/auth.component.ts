@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {NgForm} from '@angular/forms';
+import {MaskService} from '../service/mask.service';
+import {InMemoryConstants} from '../common/Constant';
+import {InMemoryCache} from '../in-memory-cache';
+import {UserService} from '../service/user-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -8,23 +12,35 @@ import {NgForm} from '@angular/forms';
 })
 export class AuthComponent implements OnInit {
 
-  isLoginMode = true;
   email: any;
   password: any;
+  signInModal: any = {};
+  errMessage: string;
 
-  constructor() {
+  constructor(private maskService: MaskService,
+              private inMemoryCache: InMemoryCache,
+              private router: Router,
+              private userService: UserService) {
   }
 
   ngOnInit(): void {
   }
 
-  onSwitchMode() {
-    this.isLoginMode = !this.isLoginMode;
-  }
-
-
-  onSubmit(form: NgForm) {
-    console.log(form.value);
-    form.reset();
+  onSubmit() {
+    this.maskService.startLoading();
+    this.userService.login(this.signInModal).subscribe(
+      res => {
+        this.inMemoryCache.setData(InMemoryConstants.TOKEN, res.access_token);
+        console.log('get Token ::', res.access_token);
+        this.router.navigate(['/manage-http-user']);
+        this.maskService.endLoading();
+      },
+      errorResponse => {
+        this.errMessage = errorResponse.error.error_description;
+        if ('Bad credentials' == this.errMessage) {
+          this.errMessage = 'Invalid Username or Password';
+        }
+        this.maskService.endLoading();
+      });
   }
 }

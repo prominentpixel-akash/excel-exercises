@@ -26,15 +26,17 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {ReactiveFormComponent} from './reactive-form/reactive-form.component';
 import {TemplateFormComponent} from './template-form/template-form.component';
 import {ObservablesComponent} from './observables/observables.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { PipeTransformOutputComponent } from './pipe-transform-output/pipe-transform-output.component';
-import {ReplacePipe} from './util/replace.pipe';
+import {ReplacePipe} from './pipe/replace.pipe';
 import { HttpRequestCreateUserComponent } from './http-request-create-user/http-request-create-user.component';
 import { HttpRequestManageUserComponent } from './http-request-manage-user/http-request-manage-user.component';
 import {MaskService} from './service/mask.service';
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import { AuthenticationRouteProtectionComponent } from './authentication-route-protection/authentication-route-protection.component';
 import { AuthComponent } from './auth/auth.component';
+import {TokenInterceptor} from './token-interceptor';
+import { DynamicComponentComponent } from './dynamic-component/dynamic-component.component';
 
 
 @NgModule({
@@ -66,7 +68,8 @@ import { AuthComponent } from './auth/auth.component';
     HttpRequestCreateUserComponent,
     HttpRequestManageUserComponent,
     AuthenticationRouteProtectionComponent,
-    AuthComponent
+    AuthComponent,
+    DynamicComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -77,7 +80,15 @@ import { AuthComponent } from './auth/auth.component';
     NgMultiSelectDropDownModule.forRoot(),
     NgxDatatableModule
   ],
-  providers: [],
+  // Register Token Interceptor
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
+  entryComponents: [DynamicComponentComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -15,11 +15,22 @@
 </div>
 -->
 
-<button app-directives>My Button</button>
+<p>This is <span app-directives>Angular9</span></p>
+
+<div app-directives color="blue" size="35px">
+  Custom Theme Directive Demo with Custom Settings
+</div>
 
 
-Text
-<input type="text" id="text" name="text" [ngModel]="text"> <br>
+<table>
+  <tr>
+    <td>
+      <label>Please enter your password :-</label>
+    </td>
+    <td>
+      <input type="text" app-directives defaultValue="3"/>
+    </td>
+  </tr>
+</table>
 
-Color
-<input type="text" id="color" name="color" [ngModel]="color">
+
